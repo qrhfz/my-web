@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 import MainLayout from '../components/main_layout'
 
 const Home: NextPage = () => {
-  return (<MainLayout>
+  return (<MainLayout title='Qori El-Hafizh'>
+
     <div className="flex flex-col h-full justify-evenly items-center md:items-start">
       <div >
         <img src="/pp.JPG" alt="" className="w-64 rounded-3xl" />

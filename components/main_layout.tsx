@@ -1,10 +1,16 @@
-import { NextComponentType } from "next"
+import Head from "next/head"
 import Link from "next/link"
 
+interface MainLayoutProps {
+    title: string;
+    children: any;
+}
 
-const MainLayout = ({ children }: any) => {
+const MainLayout = ({ children, title }: MainLayoutProps) => {
     return (<div className="h-screen  bg-gray-100 text-gray-900 w-full p-8 lg:p-16">
-
+        <Head>
+            <title>{title}</title>
+        </Head>
         <nav className="text-2xl">
             <div className="flex flex-row justify-end gap-4">
                 <Link href={'/'}>
@@ -16,7 +22,7 @@ const MainLayout = ({ children }: any) => {
                 <Link href={'/contact'}>
                     Contact
                 </Link>
-                <a href={'https://blog.qori.dev'}>Blog</a>
+                <a href={'https://blog.qori.dev'} target="_blank">Blog</a>
             </div>
         </nav>
 

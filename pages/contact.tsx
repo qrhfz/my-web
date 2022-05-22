@@ -2,7 +2,7 @@ import MainLayout from "../components/main_layout"
 
 const Contact = () => {
     return (
-        <MainLayout>
+        <MainLayout title="Contact">
             <div className="md:w-[65ch] md:mx-auto pt-16">
                 <h2 className="text-2xl font-bold pb-8">Contact Me</h2>
                 <div className="text-lg flex flex-col gap-2">
