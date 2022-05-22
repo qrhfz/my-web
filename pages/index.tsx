@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 
     <div className="flex flex-col h-full justify-evenly items-center md:items-start">
       <div >
-        <Image src="/pp.JPG" alt="" className="w-64 rounded-3xl" />
+        <Image src="/pp.JPG" alt="" width="256px" height="256px" className="rounded-3xl" />
 
       </div>
       <div >
