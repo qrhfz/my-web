@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
+import Image from "next/image";
 import MainLayout from '../components/main_layout'
 
 const Home: NextPage = () => {
@@ -8,7 +7,7 @@ const Home: NextPage = () => {
 
     <div className="flex flex-col h-full justify-evenly items-center md:items-start">
       <div >
-        <img src="/pp.JPG" alt="" className="w-64 rounded-3xl" />
+        <Image src="/pp.JPG" alt="" className="w-64 rounded-3xl" />
 
       </div>
       <div >
