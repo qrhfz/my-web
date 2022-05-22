@@ -22,7 +22,7 @@ const MainLayout = ({ children, title }: MainLayoutProps) => {
                 <Link href={'/contact'}>
                     Contact
                 </Link>
-                <a href={'https://blog.qori.dev'} target="_blank">Blog</a>
+                <a href={'https://blog.qori.dev'} target="_blank" rel="noreferrer">Blog</a>
             </div>
         </nav>
 
