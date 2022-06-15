@@ -37,7 +37,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
 const PostDetail: NextPage<PostDetailProps> = ({ post }) => {
     return <MainLayout title={post.metadata.title}>
-        <article className=" bg-gray-700 mb-8 rounded-lg">
+        <article className=" bg-gray-800 mb-8 rounded-lg">
             <div className='pb-4 w-full h-64 relative'>
                 {post.metadata.cover &&
                     <Image src={post.metadata.cover}

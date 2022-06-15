@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Aside() {
-    return <aside className="bg-gray-700 p-4 grow">
+    return <aside className="bg-gray-800 p-4 md:grow mx-auto md:mx-0">
         <div className="text-center pb-4">
             <Image
                 src={"/pp.JPG"}

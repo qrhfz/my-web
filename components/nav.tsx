@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Nav() {
-    return <nav className="p-4">
+    return <nav className="p-4 fixed bg-gray-800 w-full z-50 shadow-lg">
         <div className="flex flex-row gap-4">
             <Link href={'/'}>
                 <a>
