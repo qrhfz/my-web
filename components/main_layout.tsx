@@ -1,5 +1,7 @@
 import Head from "next/head"
-import Link from "next/link"
+import Aside from "./aside";
+import Nav from "./nav";
+
 
 interface MainLayoutProps {
     title: string;
@@ -7,26 +9,17 @@ interface MainLayoutProps {
 }
 
 const MainLayout = ({ children, title }: MainLayoutProps) => {
-    return (<div className="h-screen  bg-gray-100 text-gray-900 w-full p-8 lg:p-16">
+    return (<div className='max-w-[960px] mx-auto'>
         <Head>
             <title>{title}</title>
         </Head>
-        <nav className="text-2xl">
-            <div className="flex flex-row justify-end gap-4">
-                <Link href={'/'}>
-                    Home
-                </Link>
-                <Link href={'/projects'}>
-                    Projects
-                </Link>
-                <Link href={'/contact'}>
-                    Contact
-                </Link>
-                <a href={'https://blog.qori.dev'} target="_blank" rel="noreferrer">Blog</a>
-            </div>
-        </nav>
-
-        {children}
+        <Nav />
+        <div className="flex flex-row gap-4 items-start">
+            <Aside />
+            <main className=" w-[70ch]">
+                {children}
+            </main>
+        </div>
 
     </div>)
 }
