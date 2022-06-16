@@ -9,14 +9,14 @@ interface MainLayoutProps {
 }
 
 const MainLayout = ({ children, title }: MainLayoutProps) => {
-    return (<div>
+    return (<div className="w-full">
         <Head>
             <title>{title}</title>
         </Head>
         <Nav />
-        <div className="flex flex-col-reverse md:flex-row gap-4 items-stretch md:items-start pt-24 max-w-[960px] mx-auto">
+        <div className="flex flex-col-reverse md:flex-row gap-4 items-start md:items-stretch pt-24 max-w-[960px] mx-auto">
             <Aside />
-            <main className=" w-[70ch]">
+            <main className="p-4 max-w-[70ch]">
                 {children}
             </main>
         </div>

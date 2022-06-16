@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Aside() {
-    return <aside className="bg-gray-800 p-4 md:grow mx-auto md:mx-0">
+    return <aside className=" p-4 md:grow mx-auto md:mx-0 w-full md:w-max ">
+        <div className="bg-gray-800 p-4 flex flex-row justify-evenly md:flex-col gap-4">
         <div className="text-center pb-4">
             <Image
                 src={"/pp.JPG"}
@@ -19,7 +20,7 @@ export default function Aside() {
 
         </div>
         <div className="p-4">
-            <p >
+            
                 <strong>Contact me</strong>
                 <ul className="list-[square]">
                     <li>
@@ -37,8 +38,10 @@ export default function Aside() {
                         <Link href="mailto://contact@qori.dev"><a>Email</a></Link>
                     </li>
                 </ul>
-            </p>
+            
         </div>
+        </div>
+        
 
     </aside>
 }
