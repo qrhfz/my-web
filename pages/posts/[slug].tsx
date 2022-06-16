@@ -3,6 +3,11 @@ import MainLayout from "../../components/main_layout";
 import { getPostFiles, readSinglePost } from "../../data/read_md";
 import Image from 'next/image'
 import 'github-markdown-css/github-markdown-dark.css'
+import siteConfig from '../../site_config'
+import { useEffect } from "react";
+import hljs from 'highlight.js/lib/core';
+import dart from 'highlight.js/lib/languages/dart'
+import bash from 'highlight.js/lib/languages/bash'
 
 interface PostDetailProps {
     post: {
@@ -36,33 +41,52 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
 
 const PostDetail: NextPage<PostDetailProps> = ({ post }) => {
-    return <MainLayout title={post.metadata.title}>
-        <article className=" bg-gray-800 mb-8 rounded-lg">
-            <div className='pb-4 w-full h-64 relative'>
-                {post.metadata.cover &&
-                    <Image src={post.metadata.cover}
-                        layout="fill"
-                        objectFit="cover"
-                        className='rounded-t-lg' />}
-            </div>
-            <div className='p-4'>
-                <h2 className='text-lg font-bold'>
-                    {post.metadata.title}
+    const { metadata, content } = post
+    const date = new Date(metadata.date)
+    const { title, cover, description, slug } = metadata
 
-                </h2>
-                <p className='text-gray-400'>
-                    {post.metadata.description}
-                </p>
-                <div className="h-8"></div>
-                <div
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                    className="markdown-body"
-                    style={{ backgroundColor: "transparent" }}>
+    useEffect(()=>{
+        hljs.registerLanguage('dart', dart)
+        hljs.registerLanguage('bash', bash)
+        hljs.highlightAll()
+    },[])
+    return (
+        <MainLayout
+            title={title}
+            image={new URL(cover, siteConfig.base).toString()}
+            url={new URL(`posts/${slug}`, siteConfig.base).toString()}
+            description={description}>
+            <article className=" bg-gray-800 mb-8 rounded-lg">
+                <div className='pb-4 w-full h-64 relative'>
+                    {cover &&
+                        <Image src={cover}
+                            layout="fill"
+                            objectFit="cover"
+                            className='rounded-t-lg' />}
                 </div>
-            </div>
+                <div className='p-4'>
+                    <h2 className='text-lg font-bold'>
+                        {title}
+                    </h2>
+                    <p className='text-gray-400'>
+                        {description} <br />
+                    </p>
 
-        </article>
-    </MainLayout>
+                    <div className="h-8"></div>
+                    <div
+                        dangerouslySetInnerHTML={{ __html: content }}
+                        className="markdown-body"
+                        style={{ backgroundColor: "transparent" }}>
+                    </div>
+                    <div className="h-16"></div>
+                    <p className='text-gray-400 text-right'>
+                        Ditulis {date.toLocaleDateString('id-ID', { dateStyle: "full" })}
+                    </p>
+                </div>
+
+            </article>
+        </MainLayout>
+    )
 }
 
 export default PostDetail

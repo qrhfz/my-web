@@ -38,7 +38,7 @@ lib/
 # Membuat Cubit
 Pertama buat file cubit dengan statenya
 fake_http_call_cubit.dart
-```javascript
+```dart
 part 'fake_http_call_state.dart';
 part 'fake_http_call_cubit.freezed.dart';
 
@@ -61,7 +61,7 @@ class FakeHttpCallCubit extends Cubit<FakeHttpCallState> {
 
 # Membuat class state dengan freezed
 fake_http_call_state.dart
-```javascript
+```dart
 part of 'fake_http_call_cubit.dart';
 
 @freezed
@@ -84,13 +84,13 @@ Apabila build runner berhasil maka file fake_http_call_cubit.freezed.dart akan t
 
 # Lengkapi Cubit
 Isikan method-method pada cubit menjadi seperti ini
-```javascript
+```dart
 
 
   void fetchData() async {
     emit(FakeHttpCallState.loading());
     await Future.delayed(const Duration(seconds: 1));
-    emit(FakeHttpCallState.hasData(["Dart", "Kotlin", "JavaScript", "Rust"]));
+    emit(FakeHttpCallState.hasData(["Dart", "Kotlin", "dart", "Rust"]));
   }
 
   void fetchDataEmpty() async {
@@ -113,7 +113,7 @@ Kemudian untuk mensimulasikan waktu loading digunakanlah Future.delayed sepanjan
 # UI Layer
 *Suntikan* cubit ke widget HomePage dengan BlocProvider  
 main.dart
-```javascript
+```dart
 void main() {
   runApp(const MyApp());
 }
@@ -138,7 +138,7 @@ class MyApp extends StatelessWidget {
 ```
 
 Buat halaman HomePage
-```javascript
+```dart
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -183,7 +183,7 @@ class HomePage extends StatelessWidget {
 ```
 
 Consume FakeHttpCallCubit dengan menggunakan BlocBuilder di dalam helper method _content()
-```javascript
+```dart
 Widget _content() {
     return BlocBuilder<FakeHttpCallCubit, FakeHttpCallState>(
       builder: (context, state) {
