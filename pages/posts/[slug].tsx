@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, NextPage } from "next/types";
 import MainLayout from "../../components/main_layout";
-import { getPostFiles, readSinglePost } from "../../data/read_md";
+import { getPostFiles, readPosts, readSinglePost } from "../../data/read_md";
 import Image from 'next/image'
 import 'github-markdown-css/github-markdown-dark.css'
 import siteConfig from '../../site_config'
@@ -8,12 +8,11 @@ import { useEffect } from "react";
 import hljs from 'highlight.js/lib/core';
 import dart from 'highlight.js/lib/languages/dart'
 import bash from 'highlight.js/lib/languages/bash'
+import { Post } from "../../models/post";
 
 interface PostDetailProps {
-    post: {
-        metadata: any;
-        content: string;
-    };
+    post:Post
+    recentPosts:Post[]
 }
 
 export async function getStaticPaths() {
@@ -32,15 +31,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
     const post = readSinglePost(context.params!.slug! as string + '.md')
+    const recentPosts = readPosts()
     return {
         props: {
-            post
+            post,
+            recentPosts
         },
     }
 }
 
 
-const PostDetail: NextPage<PostDetailProps> = ({ post }) => {
+const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
     const { metadata, content } = post
     const date = new Date(metadata.date)
     const { title, cover, description, slug } = metadata
@@ -55,7 +56,9 @@ const PostDetail: NextPage<PostDetailProps> = ({ post }) => {
             title={title}
             image={new URL(cover, siteConfig.base).toString()}
             url={new URL(`posts/${slug}`, siteConfig.base).toString()}
-            description={description}>
+            description={description}
+            recentPosts={recentPosts}
+            >
             <article className=" bg-gray-800 mb-8 rounded-lg">
                 <div className='pb-4 w-full h-64 relative'>
                     {cover &&

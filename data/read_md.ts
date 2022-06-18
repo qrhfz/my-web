@@ -2,13 +2,9 @@ import fs from 'fs'
 import parseMD from 'parse-md'
 import path from 'path'
 import { marked } from 'marked'
+import { Post, PostMetadata } from "../models/post";
 
 const POST_PATH = './content/post'
-
-interface Post {
-    metadata: any
-    content: string
-}
 
 
 export function readPosts(): Post[] {
@@ -21,7 +17,13 @@ export function readPosts(): Post[] {
         return post
     })
 
+    sortPostByDate(posts)
+
     return posts
+}
+
+function sortPostByDate(posts:Post[]) {
+    posts.sort((a,b)=>new Date(b.metadata.date).getTime()-new Date(a.metadata.date).getTime())
 }
 
 export function readSinglePost(file: string): Post {

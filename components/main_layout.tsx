@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { Post } from "../models/post";
 import Aside from "./aside";
 import Nav from "./nav";
 
@@ -8,10 +9,11 @@ interface MainLayoutProps {
     children: any
     url?: string
     image?:string
-    description?:string
+    description?:string,
+    recentPosts: Post[]
 }
 
-const MainLayout = ({ children, title, url, image, description }: MainLayoutProps) => {
+const MainLayout = ({ children, title, url, image, description, recentPosts }: MainLayoutProps) => {
     return (<div className="w-full">
         <Head>
             <title>{title}</title>
@@ -25,7 +27,7 @@ const MainLayout = ({ children, title, url, image, description }: MainLayoutProp
         </Head>
         <Nav />
         <div className="flex flex-col-reverse md:flex-row gap-4 items-start md:items-stretch pt-24 max-w-[960px] mx-auto">
-            <Aside />
+            <Aside recentPosts={recentPosts} />
             <main className="p-4 max-w-[70ch]">
                 {children}
             </main>

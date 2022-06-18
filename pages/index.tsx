@@ -17,13 +17,15 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
       posts
-    }, // will be passed to the page component as props
+    }
   }
 }
 
 
 const Home: NextPage<HomeProps> = ({ posts }) => {
-  return (<MainLayout title='Qori El-Hafizh'>
+  return (<MainLayout 
+  title='Qori El-Hafizh'
+  recentPosts={posts}>
     {
       posts.map((post, index) => {
         return (
