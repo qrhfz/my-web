@@ -46,18 +46,22 @@ const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
         <SideWidget>
             <strong>Recent Posts</strong>
             <ul>
-                {recentPosts.map(post => (
-                    <li>
-                        <div className="border-b-gray-600 border-b-[1px] p-2">
-                            <p>
-                                {post.metadata.title}
+                {recentPosts.map((post, i) => (
+                    <Link href={`/posts/${post.metadata.slug}`} key={i}>
+                        <a>
+                        <li>
+                            <div className="border-b-gray-600 border-b-[1px] p-2">
+                                <p>
+                                    {post.metadata.title}
 
-                            </p>
-                            <p className="text-gray-600">
-                                {new Date(post.metadata.date).toLocaleDateString("id-ID", {month:"short", year:"numeric", day:"numeric"})}
-                            </p>
-                        </div>
-                    </li>
+                                </p>
+                                <p className="text-gray-600">
+                                    {new Date(post.metadata.date).toLocaleDateString("id-ID", { month: "short", year: "numeric", day: "numeric" })}
+                                </p>
+                            </div>
+                        </li>
+                        </a>
+                    </Link>
                 ))}
             </ul>
         </SideWidget>

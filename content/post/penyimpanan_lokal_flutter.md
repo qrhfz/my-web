@@ -17,7 +17,7 @@ Fitur:
 
 ## Contoh Penggunaan
 Membuka database
-```js
+```dart
 // Get a location using getDatabasesPath
 final databasesPath = await getDatabasesPath();
 String path = join(databasesPath, 'demo.db');
@@ -33,12 +33,12 @@ Database database = await openDatabase(path, version: 1,
 ```
 
 Membuat query dengan SQL
-```js
+```dart
 List<Map> list = await database.rawQuery('SELECT * FROM Test');
 ```
 
 Melakukan Insert dengan transaction
-```js
+```dart
 // Insert some records in a transaction
 await database.transaction((txn) async {
   int id1 = await txn.rawInsert(
@@ -64,7 +64,7 @@ Fitur:
 
 ## Penggunaan
 Box adalah tempat key-value disimpan. Penggunaan Hive mirip dengan menggunakan Map.
-```js
+```dart
 var box = Hive.box('myBox');
 
 box.put('name', 'David');
@@ -77,7 +77,7 @@ print('Name: $name');
 
 ## Menyimpan Objek
 Tidak hanya primitif dan collection, Hive juga dapat menyimpan sembarang objek. Buat adapter dengan menambahkan anotasi pada class objek yang ingin disimpan.
-```js
+```dart
 @HiveType(typeId: 0)
 class Person extends HiveObject {
 
@@ -104,7 +104,7 @@ Fitur:
 8. Fitur berbayar sync dengan cloud ObjectBox
 
 ## Contoh Penggunaan
-```js
+```dart
 @Entity()
 class Person {
   int id;
@@ -147,7 +147,7 @@ Fitur:
 
 ## Contoh Penggunaan
 ### Definis tabel
-```js
+```dart
 import 'package:drift/drift.dart';
 
 
@@ -174,7 +174,7 @@ class MyDatabase extends _$MyDatabase {
 ```
 
 ### Membuat query
-```js
+```dart
 @DriftDatabase(tables: [Todos, Categories])
 class MyDatabase extends _$MyDatabase {  
 
