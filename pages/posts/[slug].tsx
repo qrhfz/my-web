@@ -65,7 +65,8 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
                         <Image src={cover}
                             layout="fill"
                             objectFit="cover"
-                            className='rounded-t-lg' />}
+                            className='rounded-t-lg' 
+                            alt={title}/>}
                 </div>
                 <div className='p-4'>
                     <h2 className='text-lg font-bold'>

@@ -37,9 +37,8 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                     <Image src={post.metadata.cover}
                       layout="fill"
                       objectFit="cover"
-                      className='rounded-t-lg' />}
-
-
+                      className='rounded-t-lg' 
+                      alt={post.metadata.title}/>}
                 </div>
                 <div className='p-4'>
                   <h2 className='text-lg font-bold'>

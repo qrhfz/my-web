@@ -41,5 +41,5 @@ export function getPostFiles(): string[] {
 function parsePost(fileContents: string): Post {
     const post = parseMD(fileContents)
     post.content = marked.parse(post.content)
-    return post
+    return post as Post
 }

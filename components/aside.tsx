@@ -11,7 +11,8 @@ const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
                     src={"/pp.JPG"}
                     width={128}
                     height={128}
-                    className="block rounded-full" />
+                    className="block rounded-full"
+                    alt="Foto profil" />
                 <p>
                     <strong>Qori El-Hafizh</strong>
                 </p>
