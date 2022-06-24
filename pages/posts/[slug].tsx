@@ -1,13 +1,17 @@
 import { GetStaticPropsContext, NextPage } from "next/types";
 import MainLayout from "../../components/main_layout";
-import { getPostFiles, readPosts, readSinglePost } from "../../data/read_md";
+import { getPostFiles, getRecentPosts, readPosts, readSinglePost } from "../../data/read_md";
 import Image from 'next/image'
 import siteConfig from '../../site_config'
 import { Post } from "../../models/post";
 
 interface PostDetailProps {
     post: Post
-    recentPosts: Post[]
+    recentPosts: {
+        title: string;
+        slug: string;
+        date: string;
+    }[]
 }
 
 export async function getStaticPaths() {
@@ -26,7 +30,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
     const post = readSinglePost(context.params!.slug! as string + '.md')
-    const recentPosts = readPosts()
+    const recentPosts = getRecentPosts()
     return {
         props: {
             post,

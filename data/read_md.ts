@@ -29,6 +29,13 @@ export function readPosts(): Post[] {
     return posts
 }
 
+export function getRecentPosts() {
+    return readPosts().map(p => {
+        const { title, slug, date } = p.metadata
+        return { title, slug, date };
+    }).slice(0, 5)
+}
+
 function sortPostByDate(posts: Post[]) {
     posts.sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
 }

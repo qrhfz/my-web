@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Post } from "../models/post";
+import { Post, PostHighlight } from "../models/post";
 import Aside from "./aside";
 import Nav from "./nav";
 
@@ -10,7 +10,7 @@ interface MainLayoutProps {
     url?: string
     image?: string
     description?: string,
-    recentPosts: Post[]
+    recentPosts: PostHighlight[]
 }
 
 const MainLayout = ({ children, title, url, image, description, recentPosts }: MainLayoutProps) => {

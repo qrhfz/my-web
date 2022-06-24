@@ -1,31 +1,32 @@
 import type { GetStaticPropsContext, NextPage } from 'next'
-import { readPosts } from '../data/read_md'
+import { getRecentPosts, readPosts } from '../data/read_md'
 import MainLayout from '../components/main_layout'
 import Image from 'next/image';
 import Link from 'next/link';
+import { Post, PostHighlight } from '../models/post';
 
 interface HomeProps {
-  posts: {
-    metadata: any;
-    content: string;
-  }[];
+  posts: Post[]
+  recentPosts: PostHighlight[]
 }
 
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const posts = readPosts()
+  const recentPosts = getRecentPosts()
   return {
     props: {
-      posts
+      posts,
+      recentPosts
     }
   }
 }
 
 
-const Home: NextPage<HomeProps> = ({ posts }) => {
+const Home: NextPage<HomeProps> = ({ posts, recentPosts }) => {
   return (<MainLayout
     title='Qori El-Hafizh'
-    recentPosts={posts}>
+    recentPosts={recentPosts}>
     {
       posts.map((post, index) => {
         return (

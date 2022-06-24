@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Post } from "../models/post";
+import { Post, PostHighlight } from "../models/post";
 import { SideWidget } from "./SideWidget"
 
-const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
+const Aside = ({ recentPosts }: { recentPosts: PostHighlight[] }) => {
     return <div className="flex flex-col gap-4">
         <SideWidget>
             <div className="text-center pb-4">
@@ -45,26 +45,24 @@ const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
             </div>
         </SideWidget>
         <SideWidget>
-            <strong>Recent Posts</strong>
-            <ul>
-                {recentPosts.map((post, i) => (
-                    <Link href={`/posts/${post.metadata.slug}`} key={i}>
-                        <a>
-                            <li>
-                                <div className="border-b-gray-600 border-b-[1px] p-2">
-                                    <p>
-                                        {post.metadata.title}
+            <div className="pb-2">
+                <strong>Recent Posts</strong>
+            </div>
 
-                                    </p>
-                                    <p className="text-gray-600">
-                                        {new Date(post.metadata.date).toLocaleDateString("id-ID", { month: "short", year: "numeric", day: "numeric" })}
-                                    </p>
-                                </div>
-                            </li>
-                        </a>
-                    </Link>
-                ))}
-            </ul>
+            {recentPosts.map((post, i) => (
+                <Link href={`/posts/${post.slug}`} key={i}>
+                    <a><div className="pb-2">
+                        <div>
+                            {post.title}
+                        </div>
+                        <div className="text-gray-600">
+                            {new Date(post.date).toLocaleDateString("id-ID", { month: "short", day: "numeric" })}
+                        </div>
+                    </div>
+                    </a>
+                </Link>
+            ))}
+
         </SideWidget>
 
     </div>
