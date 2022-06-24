@@ -23,22 +23,22 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
 
 const Home: NextPage<HomeProps> = ({ posts }) => {
-  return (<MainLayout 
-  title='Qori El-Hafizh'
-  recentPosts={posts}>
+  return (<MainLayout
+    title='Qori El-Hafizh'
+    recentPosts={posts}>
     {
       posts.map((post, index) => {
         return (
           <Link href={`/posts/${post.metadata.slug}`} key={index} >
             <a>
-              <article className=" bg-gray-800 mb-8 rounded-lg">
+              <section className=" bg-gray-800 mb-8 rounded-lg">
                 <div className='pb-4 w-full h-64 relative'>
                   {post.metadata.cover &&
                     <Image src={post.metadata.cover}
                       layout="fill"
                       objectFit="cover"
-                      className='rounded-t-lg' 
-                      alt={post.metadata.title}/>}
+                      className='rounded-t-lg'
+                      alt={post.metadata.title} />}
                 </div>
                 <div className='p-4'>
                   <h2 className='text-lg font-bold'>
@@ -50,7 +50,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
                   </p>
                 </div>
 
-              </article>
+              </section>
             </a>
           </Link>
         )

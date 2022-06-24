@@ -2,7 +2,6 @@ import { GetStaticPropsContext, NextPage } from "next/types";
 import MainLayout from "../../components/main_layout";
 import { getPostFiles, readPosts, readSinglePost } from "../../data/read_md";
 import Image from 'next/image'
-import 'github-markdown-css/github-markdown-dark.css'
 import siteConfig from '../../site_config'
 import { useEffect } from "react";
 import hljs from 'highlight.js/lib/core';
@@ -11,8 +10,8 @@ import bash from 'highlight.js/lib/languages/bash'
 import { Post } from "../../models/post";
 
 interface PostDetailProps {
-    post:Post
-    recentPosts:Post[]
+    post: Post
+    recentPosts: Post[]
 }
 
 export async function getStaticPaths() {
@@ -46,11 +45,11 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
     const date = new Date(metadata.date)
     const { title, cover, description, slug } = metadata
 
-    useEffect(()=>{
+    useEffect(() => {
         hljs.registerLanguage('dart', dart)
         hljs.registerLanguage('bash', bash)
         hljs.highlightAll()
-    },[])
+    }, [])
     return (
         <MainLayout
             title={title}
@@ -58,15 +57,15 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
             url={new URL(`posts/${slug}`, siteConfig.base).toString()}
             description={description}
             recentPosts={recentPosts}
-            >
+        >
             <article className=" bg-gray-800 mb-8 rounded-lg">
                 <div className='pb-4 w-full h-64 relative'>
                     {cover &&
                         <Image src={cover}
                             layout="fill"
                             objectFit="cover"
-                            className='rounded-t-lg' 
-                            alt={title}/>}
+                            className='rounded-t-lg'
+                            alt={title} />}
                 </div>
                 <div className='p-4'>
                     <h2 className='text-lg font-bold'>
@@ -78,9 +77,7 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
 
                     <div className="h-8"></div>
                     <div
-                        dangerouslySetInnerHTML={{ __html: content }}
-                        className="markdown-body"
-                        style={{ backgroundColor: "transparent" }}>
+                        dangerouslySetInnerHTML={{ __html: content }}>
                     </div>
                     <div className="h-16"></div>
                     <p className='text-gray-400 text-right'>

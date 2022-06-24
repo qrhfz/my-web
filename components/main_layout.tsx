@@ -8,8 +8,8 @@ interface MainLayoutProps {
     title: string
     children: any
     url?: string
-    image?:string
-    description?:string,
+    image?: string
+    description?: string,
     recentPosts: Post[]
 }
 
@@ -19,16 +19,22 @@ const MainLayout = ({ children, title, url, image, description, recentPosts }: M
             <title>{title}</title>
             <meta property="og:title" content={title} />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={url?url:"https://www.qori.dev"} />
-            <meta property="og:image" content={image?image:"https://www.qori.dev/pp.JPG"} />
+            <meta property="og:url" content={url ? url : "https://www.qori.dev"} />
+            <meta property="og:image" content={image ? image : "https://www.qori.dev/pp.JPG"} />
             {description && <meta property="og:description" content={description} />}
             <meta property="og:locale" content="id-ID" />
 
         </Head>
         <Nav />
-        <div className="flex flex-col-reverse md:flex-row gap-4 items-start md:items-stretch pt-24 max-w-[960px] mx-auto">
-            <Aside recentPosts={recentPosts} />
-            <main className="p-4 max-w-[70ch]">
+        <div className="flex flex-col-reverse md:flex-row gap-4 md:items-stretch pt-24 max-w-[960px] mx-auto">
+            <aside
+                className="
+                mx-auto md:mx-0
+                md:basis-1/3
+                px-4 md:px-0">
+                <Aside recentPosts={recentPosts} ></Aside>
+            </aside>
+            <main className=" md:basis-2/3 px-4 md:px-0">
                 {children}
             </main>
         </div>

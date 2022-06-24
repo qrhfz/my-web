@@ -4,7 +4,7 @@ import { Post } from "../models/post";
 import { SideWidget } from "./SideWidget"
 
 const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
-    return <aside className=" p-4 md:grow mx-auto md:mx-0 basis-full md:basis-1/4 flex flex-col gap-4 ">
+    return <div className="flex flex-col gap-4">
         <SideWidget>
             <div className="text-center pb-4">
                 <Image
@@ -50,24 +50,24 @@ const Aside = ({ recentPosts }: { recentPosts: Post[] }) => {
                 {recentPosts.map((post, i) => (
                     <Link href={`/posts/${post.metadata.slug}`} key={i}>
                         <a>
-                        <li>
-                            <div className="border-b-gray-600 border-b-[1px] p-2">
-                                <p>
-                                    {post.metadata.title}
+                            <li>
+                                <div className="border-b-gray-600 border-b-[1px] p-2">
+                                    <p>
+                                        {post.metadata.title}
 
-                                </p>
-                                <p className="text-gray-600">
-                                    {new Date(post.metadata.date).toLocaleDateString("id-ID", { month: "short", year: "numeric", day: "numeric" })}
-                                </p>
-                            </div>
-                        </li>
+                                    </p>
+                                    <p className="text-gray-600">
+                                        {new Date(post.metadata.date).toLocaleDateString("id-ID", { month: "short", year: "numeric", day: "numeric" })}
+                                    </p>
+                                </div>
+                            </li>
                         </a>
                     </Link>
                 ))}
             </ul>
         </SideWidget>
 
-    </aside >
+    </div>
 }
 
 export default Aside
