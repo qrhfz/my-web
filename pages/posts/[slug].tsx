@@ -58,11 +58,11 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
                             alt={title} />}
                 </div>
                 <div className='p-4'>
-                    <h2 className='text-lg font-bold'>
+                    <h2 className='text-xl font-bold'>
                         {title}
                     </h2>
                     <p className='text-gray-400'>
-                        {description} <br />
+                        {date.toLocaleDateString('id-ID', { dateStyle: "full" })} <br />
                     </p>
 
                     <div className="h-8"></div>
@@ -71,9 +71,6 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
                         className="prose prose-invert">
                     </div>
                     <div className="h-16"></div>
-                    <p className='text-gray-400 text-right'>
-                        Ditulis {date.toLocaleDateString('id-ID', { dateStyle: "full" })}
-                    </p>
                 </div>
 
             </article>
