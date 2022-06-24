@@ -3,9 +3,16 @@ import parseMD from 'parse-md'
 import path from 'path'
 import { marked } from 'marked'
 import { Post, PostMetadata } from "../models/post";
+import hljs from "highlight.js"
 
 const POST_PATH = './content/post'
 
+marked.setOptions({
+    highlight: function (code, lang) {
+        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        return hljs.highlight(code, { language }).value;
+    },
+})
 
 export function readPosts(): Post[] {
     const files = getPostFiles()
@@ -22,8 +29,8 @@ export function readPosts(): Post[] {
     return posts
 }
 
-function sortPostByDate(posts:Post[]) {
-    posts.sort((a,b)=>new Date(b.metadata.date).getTime()-new Date(a.metadata.date).getTime())
+function sortPostByDate(posts: Post[]) {
+    posts.sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
 }
 
 export function readSinglePost(file: string): Post {

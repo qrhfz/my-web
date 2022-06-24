@@ -3,10 +3,6 @@ import MainLayout from "../../components/main_layout";
 import { getPostFiles, readPosts, readSinglePost } from "../../data/read_md";
 import Image from 'next/image'
 import siteConfig from '../../site_config'
-import { useEffect } from "react";
-import hljs from 'highlight.js/lib/core';
-import dart from 'highlight.js/lib/languages/dart'
-import bash from 'highlight.js/lib/languages/bash'
 import { Post } from "../../models/post";
 
 interface PostDetailProps {
@@ -44,12 +40,6 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
     const { metadata, content } = post
     const date = new Date(metadata.date)
     const { title, cover, description, slug } = metadata
-
-    useEffect(() => {
-        hljs.registerLanguage('dart', dart)
-        hljs.registerLanguage('bash', bash)
-        hljs.highlightAll()
-    }, [])
     return (
         <MainLayout
             title={title}
@@ -58,7 +48,7 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
             description={description}
             recentPosts={recentPosts}
         >
-            <article className=" bg-gray-800 mb-8 rounded-lg">
+            <article className=" bg-gray-800 mb-8 rounded-lg max-w-[70ch]">
                 <div className='pb-4 w-full h-64 relative'>
                     {cover &&
                         <Image src={cover}
@@ -77,7 +67,8 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
 
                     <div className="h-8"></div>
                     <div
-                        dangerouslySetInnerHTML={{ __html: content }}>
+                        dangerouslySetInnerHTML={{ __html: content }}
+                        className="prose prose-invert">
                     </div>
                     <div className="h-16"></div>
                     <p className='text-gray-400 text-right'>

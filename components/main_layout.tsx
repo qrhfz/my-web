@@ -26,7 +26,7 @@ const MainLayout = ({ children, title, url, image, description, recentPosts }: M
 
         </Head>
         <Nav />
-        <div className="flex flex-col-reverse md:flex-row gap-4 md:items-stretch pt-24 max-w-[960px] mx-auto">
+        <div className="flex flex-col-reverse md:flex-row gap-4 pt-24 max-w-[960px] mx-auto">
             <aside
                 className="
                 mx-auto md:mx-0
@@ -34,7 +34,7 @@ const MainLayout = ({ children, title, url, image, description, recentPosts }: M
                 px-4 md:px-0">
                 <Aside recentPosts={recentPosts} ></Aside>
             </aside>
-            <main className=" md:basis-2/3 px-4 md:px-0">
+            <main className="px-4 md:px-0 md:basis-2/3">
                 {children}
             </main>
         </div>
