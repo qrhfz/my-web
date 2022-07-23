@@ -67,10 +67,10 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
                     {cover &&
                         <Image src={cover}
                             layout="responsive"
-                            objectFit="contain"
+                            objectFit="cover"
                             className='rounded-lg'
                             width={160}
-                            height={90}
+                            height={100}
                             alt={title} />
                     }
                 </div>
