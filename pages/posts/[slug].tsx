@@ -52,30 +52,34 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
             description={description}
             recentPosts={recentPosts}
         >
-            <article className=" bg-gray-800 mb-8 rounded-lg max-w-[70ch]">
-                <div className='pb-4 w-full h-64 relative'>
+            <article className="mb-8">
+                <div className="max-w-[65ch]  mx-auto">
+
+                    <div className='text-gray-400 py-2'>
+                        {date.toLocaleDateString('id-ID', { dateStyle: "full" })} <br />
+                    </div>
+                    <h2 className='text-2xl font-bold'>
+                        {title}
+                    </h2>
+                </div>
+                <div className="h-4"></div>
+                <div className='h-72 relative'>
                     {cover &&
                         <Image src={cover}
                             layout="fill"
                             objectFit="cover"
-                            className='rounded-t-lg'
-                            alt={title} />}
+                            className='rounded-lg'
+                            alt={title} />
+                    }
                 </div>
-                <div className='p-4'>
-                    <h2 className='text-xl font-bold'>
-                        {title}
-                    </h2>
-                    <p className='text-gray-400'>
-                        {date.toLocaleDateString('id-ID', { dateStyle: "full" })} <br />
-                    </p>
+                <div className="h-8"></div>
 
-                    <div className="h-8"></div>
-                    <div
-                        dangerouslySetInnerHTML={{ __html: content }}
-                        className="prose prose-invert">
-                    </div>
-                    <div className="h-16"></div>
+                <div
+                    dangerouslySetInnerHTML={{ __html: content }}
+                    className="prose prose-invert mx-auto">
                 </div>
+                <div className="h-16"></div>
+
 
             </article>
         </MainLayout>

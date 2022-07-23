@@ -26,20 +26,15 @@ const MainLayout = ({ children, title, url, image, description, recentPosts }: M
 
         </Head>
         <Nav />
-        <div className="flex flex-col-reverse md:flex-row gap-4 pt-24 max-w-[960px] mx-auto">
-            <aside
-                className="
-                mx-auto md:mx-0
-                md:basis-1/3
-                px-4 md:px-0">
-                <Aside recentPosts={recentPosts} ></Aside>
-            </aside>
-            <main className="px-4 md:px-0 md:basis-2/3">
+        <div className="max-w-[800px] mx-auto pt-24">
+
+            <main className="md:px-0">
                 {children}
             </main>
         </div>
 
-    </div>)
+    </div>
+    )
 }
 
 export default MainLayout
