@@ -63,12 +63,14 @@ const PostDetail: NextPage<PostDetailProps> = ({ post, recentPosts }) => {
                     </h2>
                 </div>
                 <div className="h-4"></div>
-                <div className='h-72 relative'>
+                <div className="">
                     {cover &&
                         <Image src={cover}
-                            layout="fill"
-                            objectFit="cover"
+                            layout="responsive"
+                            objectFit="contain"
                             className='rounded-lg'
+                            width={160}
+                            height={90}
                             alt={title} />
                     }
                 </div>
