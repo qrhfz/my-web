@@ -2,7 +2,7 @@ import MainLayout from "../components/main_layout"
 
 const PrivacyPolicy = () => {
     return <MainLayout title={"Privacy Policy"} recentPosts={[]}>
-        <div className="prose">
+        <div className="prose prose-invert">
 
             <h1>Privacy Policy of qori.dev</h1>
 
